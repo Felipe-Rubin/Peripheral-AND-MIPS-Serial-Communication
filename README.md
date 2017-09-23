@@ -12,14 +12,20 @@ felipe.rubin@acad.pucrs.br & ariel.ril@acad.pucrs.br
 
 # ProjectFiles:
 *glueLogic.vhd*: Implementação do hardware da Lógica de Cola
+
 *MIPS-MC_SingleEdge*: Implementação do MIPS
+
 *serialInterface.vhd*: Implementacao da Interface Serial
+
 *softwareText.txt*: Arquivo que sera carregado pelo testbench e contem o Software(Aplicacao e Driver)
+
 *mult_div.vhd*: Operações de Soma e Divisão
+
 *System_tb.vhd*: Testbench do Sistema
 
 # OlderTestbenches:
 *MIPS-MC_SingleEdge_tb.vhd*: Testbench do MIPS
+
 *serial_tb.vhd*: Testbench da Interface Serial
 
 # Software:
@@ -32,10 +38,13 @@ felipe.rubin@acad.pucrs.br & ariel.ril@acad.pucrs.br
 
 *Passo 1*:
 	ghdl -a --ieee=synopsys -fexplicit mult_div.vhd MIPS-MC_SingleEdge.vhd glueLogic.vhd serialinterface.vhd System_tb.vhd
+
 *Passo 2*:
 	ghdl -e --ieee=synopsys -fexplicit system_tb
+
 *Passo 3*:
 	ghdl -r --ieee=synopsys -fexplicit system_tb --stop-time=500us --wave=wave.ghw
+
 *Passo 4*
 	gtkwave wave.ghw
 
@@ -58,15 +67,22 @@ felipe.rubin@acad.pucrs.br & ariel.ril@acad.pucrs.br
 
 # ProjectFiles:
 *glueLogic.vhd*: Implementation of the Glue Logic Hardware
+
 *MIPS-MC_SingleEdge*: MIPS Implementation
+
 *serialInterface.vhd*: Serial Interface Implementation
+
 *softwareText.txt*: File that will be loaded by the testbench and contains
+
 the Software(Application and Driver)
+
 *mult_div.vhd*: Multiplication and Sum operations
+
 *System_tb.vhd*: System Testbench
 
 # OlderTestbenches:
 *MIPS-MC_SingleEdge_tb.vhd*: MIPS Testbench
+
 *serial_tb.vhd*: Serial Interface Testbench
 
 # Software:
@@ -79,10 +95,13 @@ the Software(Application and Driver)
 
 *Step 1*:
 	ghdl -a --ieee=synopsys -fexplicit mult_div.vhd MIPS-MC_SingleEdge.vhd glueLogic.vhd serialinterface.vhd System_tb.vhd
+
 *Step 2*:
 	ghdl -e --ieee=synopsys -fexplicit system_tb
+
 *Step 3*:
 	ghdl -r --ieee=synopsys -fexplicit system_tb --stop-time=500us --wave=wave.ghw
+
 *Step 4*:
 	gtkwave wave.ghw
 
