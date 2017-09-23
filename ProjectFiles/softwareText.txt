@@ -1,0 +1,42 @@
+Text Segment
+ 0x00400000  0x2408021e  addiu $8,$0,0x0000021e25   	addiu $t0, $zero, 542
+ 0x00400004  0x11000003  beq $8,$0,0x00000003  27   	beq $t0, $zero, application #Se acabou, entao o periferico foi iniciado (Ja mandou 0x55)
+ 0x00400008  0x2508ffff  addiu $8,$8,0xffffffff28   	addiu $t0, $t0, -1 # i-- 
+ 0x0040000c  0x00000000  sll $0,$0,0x00000000  29   	sll $zero, $zero, 0 # nop
+ 0x00400010  0x08100001  j 0x00400004          30   	j init_p
+ 0x00400014  0x3c011001  lui $1,0x00001001     33   	la $s0, A  # Carrega endereco de memoria do vetor de dados
+ 0x00400018  0x34300000  ori $16,$1,0x00000000      
+ 0x0040001c  0x92040000  lbu $4,0x00000000($16)34   	lbu $a0, 0 ($s0) #Carrega primeiro elemento de A Vai ser 1o argumento q vai mandar
+ 0x00400020  0x0c100011  jal 0x00400044        35   	jal send_data #Manda o primeiro dado p/ periferico
+ 0x00400024  0x26100001  addiu $16,$16,0x00000036   	addiu $s0, $s0, 1 #Vai p/ proxima posicao
+ 0x00400028  0x92040000  lbu $4,0x00000000($16)37   	lbu $a0, 0 ($s0) #Carrega segundo elemento de A
+ 0x0040002c  0x0c100011  jal 0x00400044        38   	jal send_data #Manda o seugndo dado p/ periferico
+ 0x00400030  0x0c10001d  jal 0x00400074        39   	jal read_data #Le a resposta do periferico q deve ser A[0] + A[1]
+ 0x00400034  0x3c011001  lui $1,0x00001001     40   	la $s1, B #Carrega pos memoria em que deve salvar A[0]+ A[1]
+ 0x00400038  0x34310002  ori $17,$1,0x00000002      
+ 0x0040003c  0xa2220000  sb $2,0x00000000($17) 41   	sb $v0, 0 ($s1) #Salva a soma retornada pela funcao read_data do periferico
+ 0x00400040  0x08100025  j 0x00400094          42   	j fim #Termina o programa
+ 0x00400044  0x3c011000  lui $1,0x00001000     49   	li $t0, 0x10008004 #Carrega rx_busy p/ saber se pode mandar
+ 0x00400048  0x34288004  ori $8,$1,0x00008004       
+ 0x0040004c  0x91090000  lbu $9,0x00000000($8) 51   	lbu $t1, 0 ($t0)# carrega rx_busy
+ 0x00400050  0x1520fffe  bne $9,$0,0xfffffffe  52   	bne $t1, $zero, wait_busy # Se rx_busy = 1, tenta novamente, se rx_busy = 0, pode mandar
+ 0x00400054  0x3c011000  lui $1,0x00001000     53   	li $t0, 0x10008002 # carrega endereco p/ mandar dado ao periferico
+ 0x00400058  0x34288002  ori $8,$1,0x00008002       
+ 0x0040005c  0xa1040000  sb $4,0x00000000($8)  54   	sb  $a0, 0 ($t0) # Salva dado em rx_data
+ 0x00400060  0x3c011000  lui $1,0x00001000     55   	li $t1, 0x10008003 # Carrega endereco de aviso que existe um dado disponivel
+ 0x00400064  0x34298003  ori $9,$1,0x00008003       
+ 0x00400068  0x24080001  addiu $8,$0,0x0000000156   	addiu $t0, $zero, 1 #Carrega valor 1 p/ ativar rx_start
+ 0x0040006c  0xa1280000  sb $8,0x00000000($9)  57   	sb  $t0, 0 ($t1) #Salva rx_start = 1
+ 0x00400070  0x03e00008  jr $31                58   	jr $ra
+ 0x00400074  0x3c011000  lui $1,0x00001000     63   	li $t0, 0x10008001 # Carrega pos mem tx_av
+ 0x00400078  0x34288001  ori $8,$1,0x00008001       
+ 0x0040007c  0x91090000  lbu $9,0x00000000($8) 65   	lbu $t1, 0 ($t0) #Carrega valor de tx_av
+ 0x00400080  0x1120fffe  beq $9,$0,0xfffffffe  66   	beq $t1, $zero, wait_av # Se tx_av = 0, tenta novamente, se tx_av = 1, pode ler
+ 0x00400084  0x3c011000  lui $1,0x00001000     67   	li $t0, 0x10008000 #Carrega pos mem tx_data
+ 0x00400088  0x34288000  ori $8,$1,0x00008000       
+ 0x0040008c  0x91020000  lbu $2,0x00000000($8) 68   	lbu  $v0, 0 ($t0) #carrega valor de tx_data
+ 0x00400090  0x03e00008  jr $31                69   	jr $ra #Retorna valor
+ 0x00400094  0x08100025  j 0x00400094          75   	j fim
+Data Segment
+ 0x10010000    0x00000405 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000
+ 0x10010020    0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000
