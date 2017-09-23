@@ -1,16 +1,16 @@
-######PT_BR######
+###### PT_BR
 
-####T1 Organizacao e Arquitetura de Computadores II PUCRS 2017/2
+#### T1 Organizacao e Arquitetura de Computadores II PUCRS 2017/2
 
-##Autores: 
+## Autores: 
 Felipe Rubin e Ariel Ril
 
-##Email:
+## Email:
 felipe.rubin@acad.pucrs.br & ariel.ril@acad.pucrs.br
 
-##Arquivos:
+## Arquivos:
 
-#ProjectFiles:
+# ProjectFiles:
 *glueLogic.vhd*: Implementação do hardware da Lógica de Cola
 *MIPS-MC_SingleEdge*: Implementação do MIPS
 *serialInterface.vhd*: Implementacao da Interface Serial
@@ -18,17 +18,17 @@ felipe.rubin@acad.pucrs.br & ariel.ril@acad.pucrs.br
 *mult_div.vhd*: Operações de Soma e Divisão
 *System_tb.vhd*: Testbench do Sistema
 
-#OlderTestbenches:
+# OlderTestbenches:
 *MIPS-MC_SingleEdge_tb.vhd*: Testbench do MIPS
 *serial_tb.vhd*: Testbench da Interface Serial
 
-#Software:
+# Software:
 *software.asm*: O Software
 
-#Relatorio:
+# Relatorio:
 *relatorio.pdf*: O relatorio, escrito em português, explicando o sistema
 
-##Execução utilizando GHDL e GTKWAVE:
+## Execução utilizando GHDL e GTKWAVE:
 
 *Passo 1*:
 	ghdl -a --ieee=synopsys -fexplicit mult_div.vhd MIPS-MC_SingleEdge.vhd glueLogic.vhd serialinterface.vhd System_tb.vhd
@@ -41,22 +41,22 @@ felipe.rubin@acad.pucrs.br & ariel.ril@acad.pucrs.br
 
 OBS: A execução do passo 3 pode ser feita gerando outro formato de onda, por exemplo vcd ( --vcd=wave.vcd ). Embora mais rápido, não apresenta sinais muito internos.
 
-##Creditos:
+## Creditos:
 Os arquivos relacionados à interface serial e ao MIPS foram criados pelos professores Ney Calazans *ney.calazans@pucrs.br* e Fernando Moraes *fernando.moraes@pucrs.br*
 
-######EN_US
+###### EN_US
 
-####Assignment 1 Computer Organization and Design II PUCRS 2017/2
+#### Assignment 1 Computer Organization and Design II PUCRS 2017/2
 
-##Authors:
+## Authors:
 Felipe Rubin & Ariel Ril
 
-##Email:
+## Email:
 felipe.rubin@acad.pucrs.br & ariel.ril@acad.pucrs.br
 
-##Files:
+## Files:
 
-#ProjectFiles:
+# ProjectFiles:
 *glueLogic.vhd*: Implementation of the Glue Logic Hardware
 *MIPS-MC_SingleEdge*: MIPS Implementation
 *serialInterface.vhd*: Serial Interface Implementation
@@ -65,17 +65,17 @@ the Software(Application and Driver)
 *mult_div.vhd*: Multiplication and Sum operations
 *System_tb.vhd*: System Testbench
 
-#OlderTestbenches:
+# OlderTestbenches:
 *MIPS-MC_SingleEdge_tb.vhd*: MIPS Testbench
 *serial_tb.vhd*: Serial Interface Testbench
 
-#Software:
+# Software:
 *software.asm*: The software
 
-#Relatorio:
+# Relatorio:
 *relatorio.pdf*: The assignment text,written in portuguese, explaining the system
 
-#Execution using GHDL and GTKWAVE:
+# Execution using GHDL and GTKWAVE:
 
 *Step 1*:
 	ghdl -a --ieee=synopsys -fexplicit mult_div.vhd MIPS-MC_SingleEdge.vhd glueLogic.vhd serialinterface.vhd System_tb.vhd
@@ -89,5 +89,5 @@ the Software(Application and Driver)
 OBS: The execution in step 3 can be made using other wave format, for exemple
 vcd (--vcd=wave.vcd ). While it is faster, it does not show too many internal signals.
 
-#Credits:
+# Credits:
 The files related to the serial interface and MIPS where created by professor Ney Calazans *ney.calazans@pucrs.br* and professor Fernando Moraes *fernando.moraes@pucrs.br*
